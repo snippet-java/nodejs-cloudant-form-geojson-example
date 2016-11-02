@@ -1,0 +1,55 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="bluemix,cloudant,crud,form">
+    <meta name="description" content="Cloudant API - Sample Item Form">
+    <title>Cloudant API - Sample Item Form</title>
+    
+    <link rel="shortcut icon" href="images/favicon.png" />
+    
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    
+	<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+<div class="container">
+		<h2>Item List</h2>
+		<ul class="list-group" id="list"></ul>
+		<h2>Add New Item</h2>
+		<form id="form">
+		<div class="form-group">
+			<label for="_id">Item ID:</label>
+			<input type="text" class="form-control" id="_id">
+		</div>
+		<div class="form-group">
+			<label for="_name">Name:</label>
+			<input type="text" class="form-control" id="_name">
+		</div>
+		<div class="form-group">
+			<label for="_description">Description:</label>
+			<input type="text" class="form-control" id="_description">
+		</div>
+		<div class="form-group">
+			<label for="_point">Location (Latitude,Longitude):</label>
+			<input type="text" class="form-control" id="_point">
+		</div>
+		<button type="button" class="btn btn-default" id="submit">Submit</button>
+	</form>
+</div>
+<div class="hidden" id="template">
+		<li class="list list-group-item">
+			<div class="row">
+				<div class="col-xs-3 id"></div>
+				<div class="col-xs-3 name"></div>
+				<div class="col-xs-4 description"></div>
+				<div class="col-xs-1 point"></div>
+				<div class="col-xs-1"><a href="#" class="glyphicon glyphicon-trash"></a></div>
+			</div>
+		</li>
+	</div>
+</body>
+</html>
