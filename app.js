@@ -54,6 +54,7 @@ app.all(db.set.paths, db.set.route);
 // curl <url>/cloudant/list                                     //
 //==============================================================//
 app.all(db.list.paths, db.list.route);
+app.all(db.listGeo.paths, db.listGeo.route);
 
 //==== READ 1 DOCUMENT BASED ON ID =============================//
 // curl <url>/cloudant/get?id=3                                 //

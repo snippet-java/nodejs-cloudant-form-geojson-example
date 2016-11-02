@@ -1,22 +1,26 @@
 $(function() {
-	loadList();
+	loadList(true);
 	$("#submit").click(addItem);
 	$("#list").on("click", "li .glyphicon-trash", deleteItem);
 	$("#list").on("click", "li .id", populateForm);
 })
 
-function loadList() {
+function loadList(first) {
 	$.get("/cloudant/list")
 	.done(function(data) {
-		for (var i in data.data.rows) {
-			var doc = data.data.rows[i].doc;
-
-			var id = doc._id || doc.id || "";
-			var name = doc.name || "";
-			var description = doc.description || "";
-			var point = doc.point || {};
-
-			createListItem(id, name, description, point);
+		if (first && data.err && data.err.errid == "non_200") {
+			$.get("/cloudant/createDb").done(loadList);
+		} else if (data.data) {
+			for (var i in data.data.rows) {
+				var doc = data.data.rows[i].doc;
+	
+				var id = doc._id || doc.id || "";
+				var name = doc.name || "";
+				var description = doc.description || "";
+				var point = doc.point || {};
+	
+				createListItem(id, name, description, point);
+			}
 		}
 	})
 }
