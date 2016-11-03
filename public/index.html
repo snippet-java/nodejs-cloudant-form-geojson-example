@@ -12,44 +12,67 @@
 	<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <!-- script src="https://maps.googleapis.com/maps/api/js?key=<API_KEY>"></script -->
+    
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
 <div class="container">
-		<h2>Item List</h2>
-		<ul class="list-group" id="list"></ul>
-		<h2>Add New Item</h2>
-		<form id="form">
-		<div class="form-group">
-			<label for="_id">Item ID:</label>
-			<input type="text" class="form-control" id="_id">
+	<h2>Item List</h2>
+	<div class="row">
+		<div class="col-xs-6">
+			<ul class="list-group" id="list">
+				<li class="list list-group-item">
+					<div class="row">
+						<div class="col-xs-2 id">ID</div>
+						<div class="col-xs-3 name">Name</div>
+						<div class="col-xs-4 description">Description</div>
+						<div class="col-xs-3 point">Point(lat,lng)</div>
+					</div>
+				</li>
+			</ul>
 		</div>
-		<div class="form-group">
-			<label for="_name">Name:</label>
-			<input type="text" class="form-control" id="_name">
+		<div class="col-xs-6"><div id="map" style="width:100%;height:500px"></div></div>
+	</div>
+	<h2>Add New Item</h2>
+	<form id="form">
+		<div class="row">
+			<div class="col-xs-2"><label for="_id">Item ID:</label></div>
+			<div class="col-xs-10"><input type="text" class="form-control" id="_id"></div>
 		</div>
-		<div class="form-group">
-			<label for="_description">Description:</label>
-			<input type="text" class="form-control" id="_description">
+		<div class="row">
+			<div class="col-xs-2"><label for="_name">Name:</label></div>
+			<div class="col-xs-10"><input type="text" class="form-control" id="_name"></div>
 		</div>
-		<div class="form-group">
-			<label for="_point">Location (Latitude,Longitude):</label>
-			<input type="text" class="form-control" id="_point">
+		<div class="row">
+			<div class="col-xs-2"><label for="_description">Description:</label></div>
+			<div class="col-xs-10"><input type="text" class="form-control" id="_description"></div>
 		</div>
-		<button type="button" class="btn btn-default" id="submit">Submit</button>
+		<div class="row">
+			<div class="col-xs-2"><label for="_point">Location(lat,lng):</label></div>
+			<div class="col-xs-10"><input type="text" class="form-control" id="_point"></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<button type="button" class="btn btn-default form-control" id="submit">Submit</button>
+			</div>
+		</div>		
 	</form>
 </div>
 <div class="hidden" id="template">
+	<ul>
 		<li class="list list-group-item">
 			<div class="row">
-				<div class="col-xs-3 id"></div>
+				<div class="col-xs-2 id"></div>
 				<div class="col-xs-3 name"></div>
 				<div class="col-xs-4 description"></div>
-				<div class="col-xs-1 point"></div>
+				<div class="col-xs-2 point"></div>
 				<div class="col-xs-1"><a href="#" class="glyphicon glyphicon-trash"></a></div>
 			</div>
 		</li>
-	</div>
+	</ul>
+</div>
 </body>
 </html>
