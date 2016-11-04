@@ -4,6 +4,7 @@ $(function() {
 	loadList(true);
 	loadMap();
 	$("#submit").click(addItem);
+	$("#clear").click(clearForm);
 	$("#list").on("click", "li .glyphicon-trash", deleteItem);
 	$("#list").on("click", "li .id", populateForm);
 })
@@ -15,12 +16,12 @@ function loadList(first) {
 			$.get("/cloudant/createDb").done(loadList);
 		} else if (data.data) {
 			for (var i in data.data.rows) {
-				var doc = data.data.rows[i].doc;
+				var doc 		= data.data.rows[i].doc;
 	
-				var id = doc._id || doc.id || "";
-				var name = doc.name || "";
-				var description = doc.description || "";
-				var point = doc.point || {};
+				var id			= doc._id || doc.id || "";
+				var name		= doc.name || "";
+				var description	= doc.description || "";
+				var point		= doc.point || {};
 	
 				createListItem(id, name, description, point);
 			}
@@ -48,7 +49,7 @@ function createListItem(id, name, description, point) {
 		$clone.find(".name").text(name);
 		$clone.find(".description").text(description);
 		if (typeof point === "object") {
-			point = point.coordinates[0] + "," + point.coordinates[1]
+			point = parseFloat(point.coordinates[0]).toFixed(4) + "," + parseFloat(point.coordinates[1]).toFixed(4);
 		}
 		$clone.find(".point").text(point);
 		$clone.attr("doc_id", id);
@@ -64,17 +65,26 @@ function populateForm() {
 	var description	= $listItem.find(".description").text();
 	var point		= $listItem.find(".point").text();
 
+	if (id == "ID") return;
+	
 	$("#_id").val(id);
 	$("#_name").val(name);
 	$("#_description").val(description);
 	$("#_point").val(point);
 }
 
+function clearForm() {
+	$("#_point").val("");
+	$("#_id").val("");
+	$("#_name").val("");
+	$("#_description").val("");
+}
+
 function addItem() {
-	var point = $("#_point").val();
-	var id = $("#_id").val();
-	var name = $("#_name").val();
-	var description = $("#_description").val();
+	var point		= $("#_point").val();
+	var id			= $("#_id").val();
+	var name		= $("#_name").val();
+	var description	= $("#_description").val();
 	
 	$.get("/cloudant/update?id=" + id + "&name=" + name + "&description=" + description + "&point=" + point)
 	.done(function(data) {
@@ -87,10 +97,7 @@ function addItem() {
 			updateFeature(id, name, point);
 		}
 		
-		$("#_point").val("");
-		$("#_id").val("");
-		$("#_name").val("");
-		$("#_description").val("");
+		clearForm();
 	})
 }
 
