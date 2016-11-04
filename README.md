@@ -1,4 +1,4 @@
-Node.js Cloudant API Example
+Node.js Cloudant Form GeoJSON API Example
 ====================================
 
 ### Cloudant in BlueMix
@@ -6,7 +6,7 @@ Node.js Cloudant API Example
 This repository is an example Cloudant API enabled application that can be deployed into
 Bluemix with only a couple clicks. Try it out for yourself right now by clicking:
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/snippet-java/nodejs-cloudant-api-example.git)
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/snippet-java/nodejs-cloudant-form-geojson-example.git)
 
 
 ### How does this work?
