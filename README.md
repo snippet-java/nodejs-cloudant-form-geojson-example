@@ -48,9 +48,25 @@ If you want to use a different Cloudant instance (not from Bluemix), you will ne
 
 ### Using Google Map
 
-To properly use Google Map, you will have to include the API key on the script included as shown below:
+To properly use Google Map, you will have to include the API key on the script included on the `<head>` section as shown below:
+
 `<script src="https://maps.googleapis.com/maps/api/js?key=<API_KEY>"></script>`
-where `API_KEY` needs to be obtained from Google.
+
+where `<API_KEY>` needs to be obtained from Google. For more info, please refer to the following link: [https://developers.google.com/maps/documentation/javascript/get-api-key](https://developers.google.com/maps/documentation/javascript/get-api-key)
+
+
+
+### Page / Form description
+
+The page has 3 sections:
+- Item list
+- Add / Edit form
+- Map
+
+To add an item, fill in the form and use a unique item ID.
+To edit / update an item, click the item ID from the list, an modify from the form.
+
+After adding or updating the item, the list will be updated, and the map will be updated as well.
 
 
 ### Privacy Notice
