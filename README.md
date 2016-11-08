@@ -46,6 +46,13 @@ If you want to use a different Cloudant instance (not from Bluemix), you will ne
 `/services.json` from the `.cfignore` file in order to push it using `cf push` or deploy from JazzHub.
 
 
+### Using Google Map
+
+To properly use Google Map, you will have to include the API key on the script included as shown below:
+`<script src="https://maps.googleapis.com/maps/api/js?key=<API_KEY>"></script>`
+where `API_KEY` needs to be obtained from Google.
+
+
 ### Privacy Notice
 
 This package is configured to track deployments to IBM Bluemix and other Cloud Foundry platforms. The following information is sent to a Deployment Tracker service on each deployment:

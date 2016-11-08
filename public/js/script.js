@@ -1,20 +1,32 @@
+// declare map on global
 var map;
 
 $(function() {
+	// load item list
 	loadList(true);
+	
+	// initialize map
 	loadMap();
+	
+	// Buttons click action
 	$("#submit").click(addItem);
 	$("#clear").click(clearForm);
+	
+	// List item click action
 	$("#list").on("click", "li .glyphicon-trash", deleteItem);
 	$("#list").on("click", "li .id", populateForm);
 })
 
+// load item list
 function loadList(first) {
+	// get from /list API
 	$.get("/cloudant/list")
 	.done(function(data) {
+		// if database does not exist, create database
 		if (first && data.err && data.err.errid == "non_200") {
 			$.get("/cloudant/createDb").done(loadList);
 		} else if (data.data) {
+			// populate list on page
 			for (var i in data.data.rows) {
 				var doc 		= data.data.rows[i].doc;
 	
@@ -29,9 +41,10 @@ function loadList(first) {
 	})
 }
 
-
+// append item to list
 function createListItem(id, name, description, point) {
 	var $target = $("#list li[doc_id='"+id+"']");
+	// if item id exists, update on the same list item
 	if ($target.length > 0) {
 		$target.find(".id").text(id);
 		$target.find(".name").text(name);
@@ -41,7 +54,9 @@ function createListItem(id, name, description, point) {
 		}
 		$target.find(".point").text(point);
 		return 0;
-	} else {
+	} 
+	// create new item and append to list
+	else {
 		var $list	= $("#template .list");
 		
 		var $clone	= $list.clone();
@@ -58,6 +73,7 @@ function createListItem(id, name, description, point) {
 	}
 }
 
+// populate the form on item click with existing values
 function populateForm() {
 	$listItem		= $(this).parents(".list-group-item");
 	var id			= $listItem.find(".id").text();
@@ -73,6 +89,7 @@ function populateForm() {
 	$("#_point").val(point);
 }
 
+// clear the form to enter new values
 function clearForm() {
 	$("#_point").val("");
 	$("#_id").val("");
@@ -80,6 +97,7 @@ function clearForm() {
 	$("#_description").val("");
 }
 
+// add item using /update API
 function addItem() {
 	var point		= $("#_point").val();
 	var id			= $("#_id").val();
@@ -101,6 +119,8 @@ function addItem() {
 	})
 }
 
+
+// delete item using /destroy API
 function deleteItem() {
 	var id = $(this).parents(".list-group-item").attr("doc_id");
 
@@ -117,6 +137,7 @@ function deleteItem() {
 
 //== Map functions =======================================================//
 
+// map initialization
 function loadMap() {
 	var mapOptions = {
 			center: new google.maps.LatLng(0,0),
@@ -133,6 +154,7 @@ function loadMap() {
 	});
 }
 
+// refocus map on item add or remove
 function focusMap() {
 	console.log("Focussing map");
 	map.setCenter({lat:0,lng:0});
@@ -145,6 +167,7 @@ function focusMap() {
 	});
 }
 
+// add item (feature) to map
 function addFeature(id, name, point) {
 	var featureOptions = {
 			id : id,
@@ -157,6 +180,7 @@ function addFeature(id, name, point) {
 	map.data.add(featureOptions);
 }
 
+// update item (feature) on map
 function updateFeature(id, name, point) {
 	var feature = map.data.getFeatureById(id)
 	if (feature) {
@@ -168,6 +192,7 @@ function updateFeature(id, name, point) {
 	}
 }
 
+// remove item (feature) from map
 function removeFeature(id) {
 	var feature = map.data.getFeatureById(id);
 	if (feature)
