@@ -69,12 +69,12 @@ To edit / update an item, click the item ID from the list, an modify from the fo
 After adding or updating the item, the list will be updated, and the map will be updated as well.
 
 
-### Available APIs
+### Available APIs (supports GET and POST methods)
 
 * Create item database:
   * `/cloudant/createdb`
 * Create / Insert document:
-  * `/cloudant/set`
+  * `/cloudant/set?id=3&firstname=Bob&lastname=Peter`
 * List all documents in the database:
   * `/cloudant/list`
 * Read 1 document based on ID:
