@@ -40,7 +40,7 @@ app.set('db', db);
 var db = require('./lib/cloudant/db.js');
 //==============================================================//
 
-//==== CREATE STUDENT DATABASE =================================//
+//==== CREATE ITEM DATABASE =================================//
 // curl <url>/cloudant/createdb                                 //
 //==============================================================//
 app.all(db.createDb.paths, db.createDb.route);
@@ -71,7 +71,7 @@ app.all(db.update.paths, db.update.route);
 //==============================================================//
 app.all(db.destroy.paths, db.destroy.route);
 
-//==== DELETE / DROP STUDENT DATABASE===========================//
+//==== DELETE / DROP ITEM DATABASE===========================//
 // curl <url>/cloudant/deletedb                                 //
 //==============================================================//
 app.all(db.destroyDb.paths, db.destroyDb.route);

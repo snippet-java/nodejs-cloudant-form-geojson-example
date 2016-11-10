@@ -69,6 +69,25 @@ To edit / update an item, click the item ID from the list, an modify from the fo
 After adding or updating the item, the list will be updated, and the map will be updated as well.
 
 
+### Available APIs
+
+* Create item database:
+  * `/cloudant/createdb`
+* Create / Insert document:
+  * `/cloudant/set`
+* List all documents in the database:
+  * `/cloudant/list`
+* Read 1 document based on ID:
+  * `/cloudant/get?id=3`
+* Update or insert if not exist, 1 document based on ID:
+  * `/cloudant/update?id=3&firstname=Bob&lastname=Peter`
+* Delete 1 document based on ID:
+  * `/cloudant/delete?id=3`
+* Delete / drop item database:
+  * `/cloudant/deletedb`
+
+
+
 ### Privacy Notice
 
 This package is configured to track deployments to IBM Bluemix and other Cloud Foundry platforms. The following information is sent to a Deployment Tracker service on each deployment:
