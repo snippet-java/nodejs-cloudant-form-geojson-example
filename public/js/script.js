@@ -50,7 +50,7 @@ function createListItem(id, name, description, point) {
 		$target.find(".name").text(name);
 		$target.find(".description").text(description);
 		if (typeof point === "object") {
-			point = parseFloat(point.coordinates[0]).toFixed(4) + "," + parseFloat(point.coordinates[1]).toFixed(4);
+			point = parseFloat(point.coordinates[0]) + "," + parseFloat(point.coordinates[1]);
 		}
 		$target.find(".point").text(point);
 		return 0;
@@ -64,7 +64,7 @@ function createListItem(id, name, description, point) {
 		$clone.find(".name").text(name);
 		$clone.find(".description").text(description);
 		if (typeof point === "object") {
-			point = parseFloat(point.coordinates[0]).toFixed(4) + "," + parseFloat(point.coordinates[1]).toFixed(4);
+			point = parseFloat(point.coordinates[0]) + "," + parseFloat(point.coordinates[1]);
 		}
 		$clone.find(".point").text(point);
 		$clone.attr("doc_id", id);
